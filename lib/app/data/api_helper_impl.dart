@@ -41,16 +41,19 @@ class ApiHelperImpl extends GetConnect with ApiHelper {
 
   @override
   Future<Response> login(LoginRequest login) async {
+    print(login.toJson());
     return await post("users/login", login.toJson());
   }
 
   @override
   Future<Response> register(RegisterRequest register) async {
+    print(register.toJson());
     return await post("users/register", register.toJson());
   }
 
   @override
   Future<Response> registerSend(RegisterSendRequest request) async {
+    print(request.toJson());
     return await post("otps/register/send", request.toJson());
   }
 }

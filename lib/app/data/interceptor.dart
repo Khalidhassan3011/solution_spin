@@ -30,6 +30,14 @@ FutureOr interceptor(
   try {
     final res = jsonDecode(response.bodyString!);
 
+    List<int> _validErrorCode = [
+      400, // invalid registration data
+    ];
+
+    if (_validErrorCode.contains(response.statusCode)) {
+      return response;
+    }
+
     if (response.isOk) {
       return response;
     } else {

@@ -23,6 +23,7 @@ const Map<String, String> en = {
   "next": "Next",
   "confirm": "Confirm",
   "signin": "Sign In",
+  "goBack": "Go Back",
 
   "exitAppHints": "Are you sure you want to exit?",
 };

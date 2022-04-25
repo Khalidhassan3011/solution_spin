@@ -8,4 +8,6 @@ abstract class RegistrationPageAbstract {
   void onNextPressed();
 
   void onSubmitPressed();
+
+  void goBackPressed();
 }

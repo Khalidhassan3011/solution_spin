@@ -72,9 +72,9 @@ class RegistrationPageView extends GetView<RegistrationPageController> {
   Widget get _registerField => Container(
         height: Get.height * .75,
         padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          shrinkWrap: true,
+          physics: const ClampingScrollPhysics(),
           children: [
             // name
             MyInputField.heading("name".tr),
@@ -90,7 +90,7 @@ class RegistrationPageView extends GetView<RegistrationPageController> {
             MyInputField.heading("email".tr),
 
             MyInputField.inputField(
-              controller.tecName.value,
+              controller.tecEmail.value,
               Icons.email_outlined,
             ),
 
@@ -177,7 +177,7 @@ class RegistrationPageView extends GetView<RegistrationPageController> {
             children: [
               Obx(
                 () => Text(
-                  "${controller.number.value.numberFormat.countryName}   ${controller.number.value.numberFormat.countryCode}",
+                  "${controller.number.value.numberFormat.countryName}   +${controller.number.value.numberFormat.countryCode}",
                 ),
               ),
               SizedBox(width: 5.w),
@@ -296,6 +296,10 @@ class RegistrationPageView extends GetView<RegistrationPageController> {
         SizedBox(height: 16.h),
 
         _submitButton,
+
+        SizedBox(height: 16.h),
+
+        _goBack,
       ],
     ),
   );
@@ -307,6 +311,18 @@ class RegistrationPageView extends GetView<RegistrationPageController> {
       onPressed: controller.onSubmitPressed,
       child: Text(
         "confirm".tr,
+      ),
+    ),
+  );
+
+  Widget get _goBack => Obx(
+    ()=> Visibility(
+      visible: controller.showOtp.value,
+      child: Center(
+        child: TextButton(
+          onPressed: controller.goBackPressed,
+          child: Text("goBack".tr),
+        ),
       ),
     ),
   );

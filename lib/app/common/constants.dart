@@ -1,7 +1,7 @@
 class Constants {
   const Constants._();
 
-  static const String baseUrl = 'http://user-api-dev.london-design-studios.com/api/v1';
+  static const String baseUrl = 'http://user-api-dev.london-design-studios.com/api/v1/';
 
   static const timeout = Duration(seconds: 120);
   static const String token = 'authToken';
