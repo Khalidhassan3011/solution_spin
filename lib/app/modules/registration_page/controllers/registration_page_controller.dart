@@ -1,9 +1,28 @@
-import 'package:get/get.dart';
+import 'package:solution_spin/app/common/util/exports.dart';
 
-class RegistrationPageController extends GetxController {
-  //TODO: Implement RegistrationPageController
+import '../../../models/contact_number.dart';
+import '../../../models/number_format.dart';
+import '../abstract/registration_page_abstract.dart';
 
-  final count = 0.obs;
+class RegistrationPageController extends GetxController implements RegistrationPageAbstract  {
+
+  RxBool showOtp = false.obs;
+
+  RxBool visiblePassword = false.obs;
+
+  final textFieldFocusNode = FocusNode();
+
+  Rx<ContactNumber> number = ContactNumber(Helper.data.numberFormat.first, "").obs;
+
+  var tecName = TextEditingController().obs;
+  var tecEmail = TextEditingController().obs;
+  var tecPhone = TextEditingController().obs;
+  var tecPassword = TextEditingController().obs;
+  var tecConfirmPassword = TextEditingController().obs;
+
+  var tecOtpEmail = TextEditingController().obs;
+  var tecOtpPhone = TextEditingController().obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -16,5 +35,27 @@ class RegistrationPageController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
+  @override
+  void onCountryCodeSelect(NumberFormat numberFormat) {
+    Get.back();
+    number.value.numberFormat = numberFormat;
+    number.refresh();
+  }
+
+  @override
+  void togglePasswordVisibility() {
+    visiblePassword.value = !visiblePassword.value;
+  }
+
+  @override
+  void onNextPressed() {
+    showOtp.value = true;
+  }
+
+  @override
+  void onSubmitPressed() {
+    Get.offAllNamed(Routes.login);
+  }
+
 }
