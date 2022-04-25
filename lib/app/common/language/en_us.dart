@@ -13,7 +13,7 @@ const Map<String, String> en = {
   "welcomeBack": "Welcome Back",
   "continueHints": "Continue with Email or Phone Number",
 
-  "createYourAccount": "Create your Account",
+  "createYourAccount": "Create Your Account",
   "registerHints": "Register to Access your account",
 
   "emailOtp": "Email OTP",

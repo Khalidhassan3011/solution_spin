@@ -10,7 +10,7 @@ class AppTheme {
       cardColor: Colors.white,
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          primary: AppColors.colorPrimary,
+          primary: AppColors.buttonBg,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(Dimens.buttonRadius),
           ),

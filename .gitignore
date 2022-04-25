@@ -30,6 +30,11 @@
 .pub-cache/
 .pub/
 /build/
+.metadata
+.packages
+analysis_options.yaml
+pubspec.lock
+solution_spin.iml
 
 # Web related
 lib/generated_plugin_registrant.dart
