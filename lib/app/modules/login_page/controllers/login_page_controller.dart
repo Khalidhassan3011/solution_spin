@@ -1,9 +1,17 @@
-import 'package:get/get.dart';
+import '../../../common/util/exports.dart';
+import '../../../models/contact_number.dart';
+import '../../../models/number_format.dart';
+import '../abstract/login_page_abstract.dart';
 
-class LoginPageController extends GetxController {
-  //TODO: Implement LoginPageController
+class LoginPageController extends GetxController implements LoginPageAbstract {
+  RxBool visiblePassword = false.obs;
 
-  final count = 0.obs;
+  Rx<ContactNumber> number =
+      ContactNumber(Helper.data.numberFormat.first, "").obs;
+
+  var tecEmail = TextEditingController().obs;
+  var tecPassword = TextEditingController().obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -16,5 +24,21 @@ class LoginPageController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
+  @override
+  void onCountryCodeSelect(NumberFormat numberFormat) {
+    Get.back();
+    number.value.numberFormat = numberFormat;
+    number.refresh();
+  }
+
+  @override
+  void onLoginPressed() {
+    Get.offAllNamed(Routes.home);
+  }
+
+  @override
+  void togglePasswordVisibility() {
+    visiblePassword.value = !visiblePassword.value;
+  }
 }
