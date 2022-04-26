@@ -60,6 +60,8 @@ class RegistrationPageController extends GetxController implements RegistrationP
   @override
   void onNextPressed() {
     Utils.closeKeyboard();
+    Utils.unFocus;
+
     if(_isValidInput()) {
       _sendOtp();
     }
@@ -170,6 +172,7 @@ class RegistrationPageController extends GetxController implements RegistrationP
       Utils.closeDialog();
       if(value.isOk) {
         Get.offAllNamed(Routes.login);
+        Utils.showSnackbar("registerSuccess".tr);
       } else if(value.statusCode == 400) {
         Utils.showSnackbar(value.body["message"]);
       }

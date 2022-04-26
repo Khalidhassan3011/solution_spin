@@ -39,11 +39,13 @@ class LoginPageController extends GetxController implements LoginPageAbstract {
 
   @override
   void accountCreateLink() {
-    Get.offAllNamed(Routes.registration);
+    Get.toNamed(Routes.registration);
   }
 
   bool _isValidInput() {
+
     Utils.closeSnackbar();
+
     if (tecEmail.value.text.trim().isEmpty) {
       Utils.showSnackbar("Email can't empty");
       return false;
