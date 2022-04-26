@@ -7,7 +7,7 @@ const Map<String, String> en = {
   "password": "Password",
   "confirmPassword": "Confirm Password",
 
-  "forgotPassword": "Confirm Password",
+  "forgotPassword": "Forgot Password",
   "createAccount": "Create A Account",
 
   "welcomeBack": "Welcome Back",
@@ -26,4 +26,8 @@ const Map<String, String> en = {
   "goBack": "Go Back",
 
   "exitAppHints": "Are you sure you want to exit?",
+
+  // success
+  "loginSuccess": "Login Successfully",
+  "registerSuccess": "Register Successfully",
 };
