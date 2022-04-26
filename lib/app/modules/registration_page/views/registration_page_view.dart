@@ -31,7 +31,7 @@ class RegistrationPageView extends GetView<RegistrationPageController> {
   }
 
   Widget get _header => SizedBox(
-        height: Get.height * .25,
+        height: Get.height * .2,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,7 +70,7 @@ class RegistrationPageView extends GetView<RegistrationPageController> {
 
   // register fields
   Widget get _registerField => Container(
-        height: Get.height * .75,
+        height: Get.height * .8,
         padding: const EdgeInsets.all(16),
         child: ListView(
           shrinkWrap: true,
@@ -192,6 +192,7 @@ class RegistrationPageView extends GetView<RegistrationPageController> {
       );
 
   void _selectCountryCode() {
+    Utils.unFocus;
     List<Widget> _items = [];
 
     for (var numberFormat in Helper.data.numberFormat) {
@@ -216,9 +217,25 @@ class RegistrationPageView extends GetView<RegistrationPageController> {
             ),
           ),
           subtitle: Text(
-            numberFormat.countryCode,
+            "+${numberFormat.countryCode}",
             style: Style.textStyle.hints.copyWith(
               wordSpacing: 4,
+            ),
+          ),
+          trailing: Visibility(
+            visible: numberFormat.isoCode == controller.number.value.numberFormat.isoCode,
+            child: Container(
+              height: 20,
+              width: 20,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.green,
+              ),
+              child: const Icon(
+                Icons.check,
+                size: 12,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
@@ -269,7 +286,7 @@ class RegistrationPageView extends GetView<RegistrationPageController> {
 
   // OTP fields
   Widget get _showOtp => Container(
-    height: Get.height * .75,
+    height: Get.height * .8,
     padding: EdgeInsets.symmetric(horizontal: Get.width * .2),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,

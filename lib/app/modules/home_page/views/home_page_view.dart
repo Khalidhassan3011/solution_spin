@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
-
+import '../../../common/util/exports.dart';
 import '../controllers/home_page_controller.dart';
 
 class HomePageView extends GetView<HomePageController> {
@@ -9,15 +6,18 @@ class HomePageView extends GetView<HomePageController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Welcome'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'Welcome',
-          style: TextStyle(fontSize: 20),
+    return WillPopScope(
+      onWillPop: Utils.appExitConfirmation,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Welcome'),
+          centerTitle: true,
+        ),
+        body: const Center(
+          child: Text(
+            'Welcome',
+            style: TextStyle(fontSize: 20),
+          ),
         ),
       ),
     );

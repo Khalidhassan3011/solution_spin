@@ -7,24 +7,28 @@ class LoginPageView extends GetView<LoginPageController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          // logo, title, hints
-          _header,
+    return WillPopScope(
+      onWillPop: Utils.appExitConfirmation,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Column(
+          children: [
+            // logo, title, hints
+            _header,
 
-          // field, forgot
-          _body,
+            // field, forgot
+            _body,
 
-          // registration link
-          _footer
-        ],
+            // registration link
+            _footer
+          ],
+        ),
       ),
     );
   }
 
   Widget get _header => Expanded(
+    flex: 3,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,6 +69,7 @@ class LoginPageView extends GetView<LoginPageController> {
       );
 
   Widget get _body => Expanded(
+    flex: 3,
         child: Container(
           margin: const EdgeInsets.all(16),
           child: Column(
@@ -114,6 +119,7 @@ class LoginPageView extends GetView<LoginPageController> {
       );
 
   Widget get _footer => Expanded(
+    flex: 4,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [_loginBtn, _registerLink],
@@ -121,7 +127,7 @@ class LoginPageView extends GetView<LoginPageController> {
       );
 
   Widget get _loginBtn => Container(
-        margin: const EdgeInsets.all(8),
+        margin: const EdgeInsets.symmetric(horizontal: 32),
         width: double.infinity,
         child: ElevatedButton(
           onPressed: controller.onLoginPressed,
