@@ -1,12 +1,18 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 
 class HomePageController extends GetxController {
-  //TODO: Implement HomePageController
 
-  final count = 0.obs;
+  var time = DateTime.now().obs;
+
   @override
   void onInit() {
     super.onInit();
+
+    Timer.periodic(const Duration(seconds: 1), (timer) {
+      time.value = DateTime.now();
+    });
   }
 
   @override
@@ -16,5 +22,5 @@ class HomePageController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
 }
