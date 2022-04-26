@@ -10,4 +10,6 @@ abstract class RegistrationPageAbstract {
   void onSubmitPressed();
 
   void goBackPressed();
+
+  void onResendClick();
 }

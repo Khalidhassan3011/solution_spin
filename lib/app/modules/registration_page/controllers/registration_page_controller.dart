@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:solution_spin/app/common/util/exports.dart';
 import 'package:solution_spin/app/models/otp_number.dart';
 import 'package:solution_spin/app/models/request/register_request.dart';
@@ -32,9 +34,17 @@ class RegistrationPageController extends GetxController implements RegistrationP
   RegisterSendRequest? registerSendRequest;
   OtpNumber? otpNumber;
 
+  // resend
+  late Timer _timer;
+
+  // resent code after 120 second
+  RxInt max = Constants.value.resendCode.obs;
+
   @override
   void onInit() {
     super.onInit();
+
+    _timer = _startTimer;
   }
 
   @override
@@ -43,7 +53,9 @@ class RegistrationPageController extends GetxController implements RegistrationP
   }
 
   @override
-  void onClose() {}
+  void onClose() {
+    _timer.cancel();
+  }
 
   @override
   void onCountryCodeSelect(NumberFormat numberFormat) {
@@ -64,6 +76,8 @@ class RegistrationPageController extends GetxController implements RegistrationP
 
     if(_isValidInput()) {
       _sendOtp();
+      max.value = Constants.value.resendCode;
+      _timer = _startTimer;
     }
   }
 
@@ -79,6 +93,23 @@ class RegistrationPageController extends GetxController implements RegistrationP
   void goBackPressed() {
     showOtp.value = false;
   }
+
+  @override
+  void onResendClick() {
+    if (max.value == 0) {
+      showOtp.value = false;
+    }
+  }
+
+  Timer get _startTimer =>
+      Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+        if (max < 0) {
+          timer.cancel();
+          max.value = 0;
+        } else {
+          max = max - 1;
+        }
+      });
 
   /// TODO not validate properly
   bool _isValidInput() {

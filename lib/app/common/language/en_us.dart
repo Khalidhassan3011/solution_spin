@@ -30,4 +30,8 @@ const Map<String, String> en = {
   // success
   "loginSuccess": "Login Successfully",
   "registerSuccess": "Register Successfully",
+
+  // resend
+  "resendHints": "Code Sent. Try again in ",
+  "resend": "Resend",
 };

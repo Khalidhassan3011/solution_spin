@@ -35,5 +35,5 @@ class _ArgumentsKeyword {
 }
 
 class _Value {
-  int resendCode = 120; // seconds
+  int resendCode = 300; // seconds
 }

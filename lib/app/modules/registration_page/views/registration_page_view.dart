@@ -287,7 +287,7 @@ class RegistrationPageView extends GetView<RegistrationPageController> {
   // OTP fields
   Widget get _showOtp => Container(
     height: Get.height * .8,
-    padding: EdgeInsets.symmetric(horizontal: Get.width * .2),
+    padding: EdgeInsets.symmetric(horizontal: Get.width * .1),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -312,6 +312,10 @@ class RegistrationPageView extends GetView<RegistrationPageController> {
 
         SizedBox(height: 16.h),
 
+        _resend,
+
+        SizedBox(height: 16.h),
+
         _submitButton,
 
         SizedBox(height: 16.h),
@@ -319,6 +323,29 @@ class RegistrationPageView extends GetView<RegistrationPageController> {
         _goBack,
       ],
     ),
+  );
+
+  Widget get _resend => Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Text(
+        "resendHints".tr,
+      ),
+      Obx(
+            () => GestureDetector(
+          onTap: controller.onResendClick,
+          child: Text(
+            controller.max.value > 0
+                ? Helper.secondToMinute(controller.max.value)
+                : "resend".tr,
+            style: const TextStyle(
+              color: AppColors.colorPrimary,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+      ),
+    ],
   );
 
   Widget get _submitButton => Container(
