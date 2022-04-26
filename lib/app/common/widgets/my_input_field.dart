@@ -1,7 +1,5 @@
 import 'package:solution_spin/app/common/util/exports.dart';
 
-import '../../modules/registration_page/controllers/registration_page_controller.dart';
-
 class MyInputField {
   static Widget inputField(
     TextEditingController controller,
@@ -9,19 +7,14 @@ class MyInputField {
   ) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: TextFormField(
+      child: TextField(
         controller: controller,
+        textAlignVertical: TextAlignVertical.center,
         decoration: Style.other.inputDecoration.copyWith(
+          isCollapsed: true,
           suffixIcon: suffixIcon == null
               ? Container()
-              : Padding(
-                  padding: const EdgeInsets.only(right: 32),
-                  child: Icon(suffixIcon, color: Colors.grey),
-                ),
-          suffixIconConstraints: const BoxConstraints(
-            maxHeight: 25,
-            maxWidth: 30,
-          ),
+              : Icon(suffixIcon, color: Colors.grey),
         ),
       ),
     );
@@ -44,7 +37,7 @@ class MyInputField {
       child: Row(
         children: [
           Expanded(
-            child: TextFormField(
+            child: TextField(
               controller: controller,
               obscureText: obscure,
               decoration: Style.other.inputDecorationNone.copyWith(
